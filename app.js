@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const errorHandler = require('./midllewares/errorHandler');
 
 const PORT = 3001;
 const app = express();
@@ -11,4 +12,10 @@ mongoose
   })
   .catch(console.log);
 
+app.use(errorHandler);
+
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+process.on('uncaughtException', (err) => {
+  console.error(err);
+});
