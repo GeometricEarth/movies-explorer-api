@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./midllewares/errorHandler');
-const { userRourtes } = require('./routes');
+const { userRourtes, movieRoutes } = require('./routes');
 
 const PORT = 3001;
 const app = express();
@@ -23,6 +23,7 @@ app.use((req, _res, next) => {
 });
 
 app.use('/users', userRourtes);
+app.use('/movies', movieRoutes);
 
 app.use(errorHandler);
 
