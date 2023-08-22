@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 
 const errorHandler = require('./midllewares/errorHandler');
 const userAuth = require('./midllewares/userAuth');
-const { createUser } = require('./controllers/userController');
+const { createUser, signIn } = require('./controllers/userController');
 const { userRourtes, movieRoutes } = require('./routes');
 
 const { PORT } = require('./utils/constants');
@@ -21,12 +21,9 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use((req, _res, next) => {
-  req.user = { _id: '64e37a97c3747f3c18f687d8' };
-  next();
-});
 
-app.use('/signup', createUser);
+app.post('/signup', createUser);
+app.post('/signin', signIn);
 
 app.use('/users', userAuth, userRourtes);
 app.use('/movies', userAuth, movieRoutes);
