@@ -10,7 +10,7 @@ const getUser = (req, res, next) => {
       if (!user) {
         throw new NotFound({ message: notFoundErrorMessage });
       }
-      res.staus(200).send(user);
+      res.status(200).send(user);
     })
     .catch((err) => {
       next(checkErrorType(err));
