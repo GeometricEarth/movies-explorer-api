@@ -1,5 +1,6 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
-const { NotFound } = require('../utils/httpErrors');
+const { NotFound, DuplicateKeyError } = require('../utils/httpErrors');
 const checkErrorType = require('../midllewares/checkErrorType');
 
 const notFoundErrorMessage = 'Запрашиваемый пользователь не найден';
@@ -34,4 +35,20 @@ const updateUser = (req, res, next) => {
     });
 };
 
-module.exports = { getUser, updateUser };
+const createUser = async (req, res, next) => {
+  try {
+    const hash = await bcrypt.hash(req.body.password, 10);
+
+    const user = await User.create({ ...req.body, password: hash });
+    return res.status(201).send(user);
+  } catch (err) {
+    if (err.code === 11000) {
+      return next(
+        new DuplicateKeyError('Пользователь с таким email уже существует'),
+      );
+    }
+    return next(checkErrorType(err));
+  }
+};
+
+module.exports = { getUser, updateUser, createUser };
