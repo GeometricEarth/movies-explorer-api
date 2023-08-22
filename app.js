@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+
 const errorHandler = require('./midllewares/errorHandler');
+const userAuth = require('./midllewares/userAuth');
 const { userRourtes, movieRoutes } = require('./routes');
+
 const { PORT } = require('./utils/constants');
 
 const app = express();
@@ -22,8 +25,8 @@ app.use((req, _res, next) => {
   next();
 });
 
-app.use('/users', userRourtes);
-app.use('/movies', movieRoutes);
+app.use('/users', userAuth, userRourtes);
+app.use('/movies', userAuth, movieRoutes);
 
 app.use(errorHandler);
 
