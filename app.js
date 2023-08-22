@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./midllewares/errorHandler');
 const { userRourtes, movieRoutes } = require('./routes');
+const { PORT } = require('./utils/constants');
 
-const PORT = 3001;
 const app = express();
 mongoose
   .connect('mongodb://127.0.0.1:27017/bitfilmsdb', {
