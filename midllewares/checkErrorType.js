@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { BadRequest } = require('../utils/httpErrors');
+const { BadRequest, DuplicateKeyError } = require('../utils/httpErrors');
 
 module.exports = (err) => {
   if (
@@ -9,5 +9,9 @@ module.exports = (err) => {
   ) {
     return new BadRequest('Переданы некорректные данные');
   }
+  if (err.code === 11000) {
+    return new DuplicateKeyError('Пользователь с таким email уже существует');
+  }
+
   return err;
 };

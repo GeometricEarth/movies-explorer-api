@@ -2,11 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
-const {
-  NotFound,
-  DuplicateKeyError,
-  AuthError,
-} = require('../utils/httpErrors');
+const { NotFound, AuthError } = require('../utils/httpErrors');
 const { JWT_SECRET } = require('../utils/constants');
 const checkErrorType = require('../midllewares/checkErrorType');
 
@@ -50,11 +46,6 @@ const createUser = async (req, res, next) => {
     const user = await User.create({ ...req.body, password: hash });
     return res.status(201).send(user);
   } catch (err) {
-    if (err.code === 11000) {
-      return next(
-        new DuplicateKeyError('Пользователь с таким email уже существует'),
-      );
-    }
     return next(checkErrorType(err));
   }
 };
