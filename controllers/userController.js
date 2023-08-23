@@ -80,9 +80,18 @@ const signIn = async (req, res, next) => {
   }
 };
 
+const signOut = (_req, res, next) => {
+  try {
+    res.clearCookie('jwt').end();
+  } catch (err) {
+    next(checkErrorType(err));
+  }
+};
+
 module.exports = {
   getUser,
   updateUser,
   createUser,
   signIn,
+  signOut,
 };

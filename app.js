@@ -5,7 +5,7 @@ const celebrate = require('celebrate');
 
 const errorHandler = require('./midllewares/errorHandler');
 const userAuth = require('./midllewares/userAuth');
-const { createUser, signIn } = require('./controllers/userController');
+const { createUser, signIn, signOut } = require('./controllers/userController');
 const { userRourtes, movieRoutes } = require('./routes');
 
 const { PORT } = require('./utils/constants');
@@ -25,6 +25,7 @@ app.use(cookieParser());
 
 app.post('/signup', createUser);
 app.post('/signin', signIn);
+app.delete('/signout', signOut);
 
 app.use('/users', userAuth, userRourtes);
 app.use('/movies', userAuth, movieRoutes);
