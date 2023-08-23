@@ -1,8 +1,8 @@
 const { Joi, celebrate } = require('celebrate');
 const { urlRegExp } = require('./constants');
 
-function postMovieValidator() {
-  return celebrate({
+function postMovieValidator(req, res, next) {
+  const test = celebrate({
     body: Joi.object().keys({
       country: Joi.string().required(),
       director: Joi.string().required(),
@@ -17,14 +17,16 @@ function postMovieValidator() {
       nameEN: Joi.string().required(),
     }),
   });
+  test(req, res, next);
 }
 
-function deleteMovieValidator() {
-  return celebrate({
+function deleteMovieValidator(req, res, next) {
+  const test = celebrate({
     props: Joi.object().keys({
       movieId: Joi.string().hex().length(24).required(),
     }),
   });
+  test(req, res, next);
 }
 
 module.exports = { postMovieValidator, deleteMovieValidator };
