@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const celebrate = require('celebrate');
 
 const errorHandler = require('./midllewares/errorHandler');
 const userAuth = require('./midllewares/userAuth');
@@ -28,6 +29,7 @@ app.post('/signin', signIn);
 app.use('/users', userAuth, userRourtes);
 app.use('/movies', userAuth, movieRoutes);
 
+app.use(celebrate.errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
