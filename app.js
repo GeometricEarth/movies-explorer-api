@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const celebrate = require('celebrate');
 
 const errorHandler = require('./midllewares/errorHandler');
+const { requestLogger, errorLogger } = require('./midllewares/logger');
 const userAuth = require('./midllewares/userAuth');
 const { createUser, signIn, signOut } = require('./controllers/userController');
 const { userRourtes, movieRoutes } = require('./routes');
@@ -22,6 +23,7 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(requestLogger);
 
 app.post('/signup', createUser);
 app.post('/signin', signIn);
@@ -30,6 +32,7 @@ app.delete('/signout', signOut);
 app.use('/users', userAuth, userRourtes);
 app.use('/movies', userAuth, movieRoutes);
 
+app.use(errorLogger);
 app.use(celebrate.errors());
 app.use(errorHandler);
 
