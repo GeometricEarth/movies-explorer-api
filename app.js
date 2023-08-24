@@ -5,6 +5,7 @@ const celebrate = require('celebrate');
 
 const errorHandler = require('./midllewares/errorHandler');
 const { requestLogger, errorLogger } = require('./midllewares/logger');
+const { NotFound } = require('./utils/httpErrors');
 const userAuth = require('./midllewares/userAuth');
 const { createUser, signIn, signOut } = require('./controllers/userController');
 const { userRourtes, movieRoutes } = require('./routes');
@@ -31,6 +32,9 @@ app.delete('/signout', signOut);
 
 app.use('/users', userAuth, userRourtes);
 app.use('/movies', userAuth, movieRoutes);
+app.use((_req, _res, next) => {
+  next(new NotFound('Страница которую вы запрашиваете не существует'));
+});
 
 app.use(errorLogger);
 app.use(celebrate.errors());
