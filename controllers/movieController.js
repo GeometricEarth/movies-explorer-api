@@ -2,8 +2,9 @@ const Movie = require('../models/movie');
 const checkErrorType = require('../midllewares/checkErrorType');
 const { NotFound, Forbidden } = require('../utils/httpErrors');
 
-const getAllMovies = (_req, res, next) => {
-  Movie.find({})
+const getAllMovies = (req, res, next) => {
+  const { _id } = req.user._id;
+  Movie.find({ _id })
     .then((movies) => {
       res.status(200).send(movies);
     })
