@@ -3,7 +3,6 @@ const BadRequest = require('./BadRequest');
 const DuplicateKeyError = require('./DuplicateKeyError');
 const Forbidden = require('./Forbidden');
 const NotFound = require('./NotFound');
-const ValidationError = require('./ValidationError');
 
 module.exports = {
   AuthError,
@@ -11,5 +10,4 @@ module.exports = {
   DuplicateKeyError,
   Forbidden,
   NotFound,
-  ValidationError,
 };
