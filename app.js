@@ -10,16 +10,16 @@ const userAuth = require('./midllewares/userAuth');
 const { createUser, signIn, signOut } = require('./controllers/userController');
 const { userRourtes, movieRoutes } = require('./routes');
 
-const { PORT } = require('./utils/constants');
+const { PORT, DB_URI } = require('./utils/constants');
 
 const app = express();
 mongoose
-  .connect('mongodb://127.0.0.1:27017/bitfilmsdb', {
+  .connect(DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: false,
     autoIndex: true,
   })
-  .catch(console.log);
+  .catch(console.error);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
