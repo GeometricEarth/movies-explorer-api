@@ -27,10 +27,10 @@ const deleteMovie = async (req, res, next) => {
   try {
     const movie = await Movie.findById(req.params.movieId);
     if (!movie) {
-      throw new NotFound({ message: 'Данный id отстуствует в базе' });
+      throw new NotFound('Данный id отстуствует в базе');
     }
     if (req.user._id !== movie.owner.toString()) {
-      throw new Forbidden({ message: 'Доступ запрещен' });
+      throw new Forbidden('Доступ запрещен');
     }
     await Movie.deleteOne({ _id: movie._id }).then();
     res.status(200).send({ message: 'Фильм удален' });
