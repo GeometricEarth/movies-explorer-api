@@ -6,8 +6,9 @@ const urlRegExp =
 
 const {
   JWT_SECRET = 'dev-secret',
-  PORT = 3001,
+  PORT = 3000,
   DB_URI = 'mongodb://127.0.0.1:27017/bitfilmsdb',
+  FRONT_URL = 'http://localhost:3000',
 } = process.env;
 
 module.exports = {
@@ -15,4 +16,5 @@ module.exports = {
   JWT_SECRET,
   PORT,
   DB_URI,
+  FRONT_URL,
 };
