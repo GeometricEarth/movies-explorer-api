@@ -22,7 +22,7 @@ function postMovieValidator(req, res, next) {
 
 function deleteMovieValidator(req, res, next) {
   const test = celebrate({
-    props: Joi.object().keys({
+    params: Joi.object().keys({
       movieId: Joi.string().hex().length(24).required(),
     }),
   });
