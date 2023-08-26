@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const celebrate = require('celebrate');
 const cors = require('cors');
+const helmet = require('helmet');
 
 const errorHandler = require('./midllewares/errorHandler');
 const { requestLogger, errorLogger } = require('./midllewares/logger');
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({ origin: FRONT_URL, credentials: true }));
+app.use(helmet());
 app.use(requestLogger);
 
 app.post('/signup', createUser);
