@@ -7,6 +7,7 @@ const helmet = require('helmet');
 
 const errorHandler = require('./midllewares/errorHandler');
 const { requestLogger, errorLogger } = require('./midllewares/logger');
+const { requestLimiter, signupLimiter } = require('./utils/limiter');
 const { NotFound } = require('./utils/httpErrors');
 const userAuth = require('./midllewares/userAuth');
 const { createUser, signIn, signOut } = require('./controllers/userController');
@@ -29,8 +30,9 @@ app.use(cookieParser());
 app.use(cors({ origin: FRONT_URL, credentials: true }));
 app.use(helmet());
 app.use(requestLogger);
+app.use(requestLimiter);
 
-app.post('/signup', createUser);
+app.post('/signup', signupLimiter, createUser);
 app.post('/signin', signIn);
 app.delete('/signout', signOut);
 
