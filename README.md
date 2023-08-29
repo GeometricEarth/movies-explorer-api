@@ -22,6 +22,6 @@
 
 ### 'Ссылки:'
 
-Cервера API api.geomovie.nomoredomainsicu.ru
+Cервер API api.geomovie.nomoredomainsicu.ru
 Сервер фронтенда: geomovie.nomoredomainsicu.ru
 [Макет](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-7389&mode=design&t=mJCzoo5d0jRJACoW-0)
