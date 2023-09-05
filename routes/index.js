@@ -13,7 +13,7 @@ const { NotFound } = require('../utils/httpErrors');
 
 mainRouter.post('/signup', signupLimiter, createUser);
 mainRouter.post('/signin', signIn);
-mainRouter.delete('/signout', signOut);
+mainRouter.delete('/signout', userAuth, signOut);
 
 mainRouter.use('/users', userAuth, userRourtes);
 mainRouter.use('/movies', userAuth, movieRoutes);
