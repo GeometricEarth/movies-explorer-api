@@ -6,7 +6,7 @@
 
 ## Обзор
 
-Проект построен с использованием веб сервера [Express](https://expressjs.com/) и базы данных [MongoDB](https://www.mongodb.com/).
+Проект построен с использованием Node.js фреймворка [Express](https://expressjs.com/) и базы данных [MongoDB](https://www.mongodb.com/).
 
 ## Запуск
 
@@ -20,8 +20,8 @@
 
 Запускает сервер на [localhost:3000](http://localhost:3000) с хот релоудом.
 
-### 'Ссылки:'
+### Ссылки:
 
-Cервер API api.geomovie.nomoredomainsicu.ru
-Сервер фронтенда: geomovie.nomoredomainsicu.ru
-[Макет](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-7389&mode=design&t=mJCzoo5d0jRJACoW-0)
+  - Cервер API: [api.geomovie.nomoredomainsicu.ru](https://api.geomovie.nomoredomainsicu.ru)
+  - Фронтенд: [geomovie.nomoredomainsicu.ru](https://geomovie.nomoredomainsicu.ru)
+  - [Макет](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-7389&mode=design&t=mJCzoo5d0jRJACoW-0)
