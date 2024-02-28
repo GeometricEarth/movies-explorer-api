@@ -44,7 +44,19 @@ const createUser = async (req, res, next) => {
     const hash = await bcrypt.hash(req.body.password, 10);
 
     const user = await User.create({ ...req.body, password: hash });
-    return res.status(201).send(user);
+    const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
+    return res
+      .status(201)
+      .cookie('jwt', token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        sameSite: 'None',
+        secure: true,
+      })
+      .send(user);
   } catch (err) {
     return next(checkErrorType(err));
   }
