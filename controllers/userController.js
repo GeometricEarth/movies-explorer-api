@@ -69,7 +69,7 @@ const signIn = async (req, res, next) => {
     if (!user) {
       throw new AuthError(AuthErrorMessage);
     }
-    const isAuthorized = bcrypt.compare(user.password, password);
+    const isAuthorized = await bcrypt.compare(password, user.password);
     if (!isAuthorized) {
       throw new AuthError(AuthErrorMessage);
     }
