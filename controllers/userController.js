@@ -94,7 +94,13 @@ const signIn = async (req, res, next) => {
 
 const signOut = (_req, res, next) => {
   try {
-    res.clearCookie('jwt').end();
+    res
+      .clearCookie('jwt', {
+        httpOnly: true,
+        sameSite: 'None',
+        secure: true,
+      })
+      .end();
   } catch (err) {
     next(checkErrorType(err));
   }
