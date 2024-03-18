@@ -12,7 +12,7 @@ function postMovieValidator(req, res, next) {
       image: Joi.string().required().pattern(urlRegExp),
       trailerLink: Joi.string().required().pattern(urlRegExp),
       thumbnail: Joi.string().required().pattern(urlRegExp),
-      movieId: Joi.number().required(),
+      beatFilmId: Joi.number().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
     }),
